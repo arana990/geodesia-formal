@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "Provas verificadas por máquina de cinco relações da geodesia física"
+message: "Se usar este material, cite-o como abaixo."
+type: software
+authors:
+  - family-names: Arana
+    given-names: Daniel
+    affiliation: "Universidade Federal do Paraná"
+abstract: >-
+  Formalização em Lean 4, sobre a biblioteca mathlib, de cinco relações da
+  geodesia física: a separação geoide/quase-geoide como identidade algébrica; o
+  limite rígido dos fatores de maré; a invariância da razão assintótica de
+  Boussinesq; a implicação entre as condições de bem-postura de Hörmander e de
+  Lions-Sznitman, com recíproca falsa; e a nulidade do número de Love de
+  sobrecarga de grau zero por conservação de massa. Cada teorema tem a sua lista
+  de axiomas impressa no build, e nenhum depende de axioma fora dos três padrão
+  do sistema.
+keywords:
+  - physical geodesy
+  - formal verification
+  - Lean 4
+  - mathlib
+  - height systems
+  - load Love numbers
+license: GPL-3.0
