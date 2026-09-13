@@ -1,25 +1,30 @@
 cff-version: 1.2.0
-title: "Provas verificadas por máquina de cinco relações da geodesia física"
-message: "Se usar este material, cite-o como abaixo."
+title: "Machine-checked proofs of five relations in physical geodesy"
+message: "If you use this material, please cite it as below."
 type: software
 authors:
   - family-names: Arana
     given-names: Daniel
     affiliation: "Universidade Federal do Paraná"
 abstract: >-
-  Formalização em Lean 4, sobre a biblioteca mathlib, de cinco relações da
-  geodesia física: a separação geoide/quase-geoide como identidade algébrica; o
-  limite rígido dos fatores de maré; a invariância da razão assintótica de
-  Boussinesq; a implicação entre as condições de bem-postura de Hörmander e de
-  Lions-Sznitman, com recíproca falsa; e a nulidade do número de Love de
-  sobrecarga de grau zero por conservação de massa. Cada teorema tem a sua lista
-  de axiomas impressa no build, e nenhum depende de axioma fora dos três padrão
-  do sistema.
+  A Lean 4 formalisation, over the mathlib library, of five relations in physical
+  geodesy: the geoid-quasigeoid separation as an algebraic identity rather than two
+  independent routes; the rigid limit of the gravimetric and tilt factors, together
+  with the vanishing of the displacement factors in the asymptotic regime; the
+  invariance of the asymptotic Boussinesq ratio with respect to gravity and shear
+  modulus; the implication from Hormander's uniqueness condition to the
+  Lions-Sznitman well-posedness condition, with an explicit counterexample to the
+  converse; and the nullity of the degree-zero load Love number as a consequence of
+  mass conservation. Every theorem prints its axiom dependencies during the build,
+  and none depends on an axiom outside the three standard ones. No observational
+  data are used.
 keywords:
   - physical geodesy
   - formal verification
+  - interactive theorem proving
   - Lean 4
   - mathlib
   - height systems
   - load Love numbers
+  - geodetic boundary value problem
 license: GPL-3.0

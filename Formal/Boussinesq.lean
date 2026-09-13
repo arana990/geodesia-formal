@@ -52,11 +52,14 @@ noncomputable def hInf (G g mu nu : ℝ) : ℝ := -g ^ 2 * (1 - nu) / (2 * Real.
 noncomputable def nlInf (G g mu nu : ℝ) : ℝ :=
   (1 - 2 * nu) * g ^ 2 / (4 * Real.pi * G * mu)
 
-/-- **O teorema: a razão vale `−(1−2ν)/(2(1−ν))`, e `g` e `μ` desapareceram.**
+/-- **EN:** Given the two Boussinesq high-degree (asymptotic) forms, the ratio `(n·l')∞ / h'∞` equals
+`−(1−2ν)/(2(1−ν))`: `g` and `μ` cancel. The only hypotheses are non-vanishing conditions.
+
+**O teorema: a razão vale `−(1−2ν)/(2(1−ν))`, e `g` e `μ` desapareceram.**
 
 ⚠️ As hipóteses são todas de não-divisão-por-zero — `G`, `g`, `μ` não nulos e `ν ≠ 1`.
 Nenhuma é física: a física está nas duas definições. -/
-theorem razao_de_boussinesq (G g mu nu : ℝ)
+theorem boussinesq_ratio (G g mu nu : ℝ)
     (hG : G ≠ 0) (hg : g ≠ 0) (hmu : mu ≠ 0) (hnu : nu ≠ 1) :
     nlInf G g mu nu / hInf G g mu nu = -(1 - 2 * nu) / (2 * (1 - nu)) := by
   have hpi : Real.pi ≠ 0 := Real.pi_ne_zero
@@ -65,7 +68,10 @@ theorem razao_de_boussinesq (G g mu nu : ℝ)
   field_simp
   ring
 
-/-- **A INVARIÂNCIA, que é o que faz da razão um oráculo.**
+/-- **EN:** The Boussinesq ratio is invariant under any change of `G`, `g`, `μ` at fixed Poisson ratio `ν` —
+which is what lets it serve as an oracle for a model whose `μ` is not tabulated.
+
+**A INVARIÂNCIA, que é o que faz da razão um oráculo.**
 
 Duas escolhas quaisquer de `(g, μ)` — e de `G`, já agora — dão a MESMA razão, desde que o
 `ν` seja o mesmo. ⚠️ É este enunciado, e não o anterior, que autoriza a comparação com um
@@ -74,23 +80,26 @@ modelo cujo `μ` não conhecemos.
 Precedente do defeito que ele impede: o painel registou durante uma frente inteira que
 `n·l'` **não tinha oráculo independente**, porque nenhuma fonte do acervo publica `l'` de
 carga do PREM. A ausência era de TABELA; a razão sempre esteve disponível. -/
-theorem razao_nao_depende_de_g_nem_de_mu
+theorem ratio_independent_of_g_and_mu
     (G₁ g₁ mu₁ G₂ g₂ mu₂ nu : ℝ)
     (h₁ : G₁ ≠ 0) (h₂ : g₁ ≠ 0) (h₃ : mu₁ ≠ 0)
     (h₄ : G₂ ≠ 0) (h₅ : g₂ ≠ 0) (h₆ : mu₂ ≠ 0) (hnu : nu ≠ 1) :
     nlInf G₁ g₁ mu₁ nu / hInf G₁ g₁ mu₁ nu
       = nlInf G₂ g₂ mu₂ nu / hInf G₂ g₂ mu₂ nu := by
-  rw [razao_de_boussinesq G₁ g₁ mu₁ nu h₁ h₂ h₃ hnu,
-      razao_de_boussinesq G₂ g₂ mu₂ nu h₄ h₅ h₆ hnu]
+  rw [boussinesq_ratio G₁ g₁ mu₁ nu h₁ h₂ h₃ hnu,
+      boussinesq_ratio G₂ g₂ mu₂ nu h₄ h₅ h₆ hnu]
 
 /-- `ν` a partir das velocidades sísmicas: `ν = (v_p² − 2v_s²) / (2(v_p² − v_s²))`.
 
 É por aqui que a verificação externa entra: `@farrell1972carga` **não** tabula `μ` nem `ν`
 do modelo dele, mas publica `v_p` e `v_s` da camada de topo na Fig. 2 (p. 784). -/
-noncomputable def poissonDeVelocidades (vp vs : ℝ) : ℝ :=
+noncomputable def poissonFromVelocities (vp vs : ℝ) : ℝ :=
   (vp ^ 2 - 2 * vs ^ 2) / (2 * (vp ^ 2 - vs ^ 2))
 
-/-- ✅ **O controlo externo, em aritmética fechada.**
+/-- **EN:** Closed arithmetic check: with `v_p = 6.14`, `v_s = 3.55` km/s and Farrell's `h'∞ = −5.005`, the
+ratio reproduces the tabulated `(n·l')∞ = 1.673` to within `1e-3`, the table's own resolution.
+
+✅ **O controlo externo, em aritmética fechada.**
 
 Com `v_p = 6,14` e `v_s = 3,55` km/s — os valores da Fig. 2 de `@farrell1972carga` para o
 topo do Gutenberg–Bullen — o `ν` sai `≈ 0,2489` e a razão `≈ −0,3343`. Multiplicada pelo
@@ -100,15 +109,18 @@ coluna `n·l'`.
 ⚠️ **A tolerância `1e-3` é a resolução da FONTE**, não uma folga escolhida: a Tabela A2
 publica `1,673`, com três casas decimais. Apertar mais seria exigir do artigo uma precisão
 que ele não imprime — o §0.3c-quater do `CLAUDE.md`. -/
-theorem controlo_contra_farrell :
-    |(-5.005) * (-(1 - 2 * poissonDeVelocidades 6.14 3.55)
-        / (2 * (1 - poissonDeVelocidades 6.14 3.55))) - 1.673| < 1e-3 := by
-  unfold poissonDeVelocidades
+theorem control_against_farrell :
+    |(-5.005) * (-(1 - 2 * poissonFromVelocities 6.14 3.55)
+        / (2 * (1 - poissonFromVelocities 6.14 3.55))) - 1.673| < 1e-3 := by
+  unfold poissonFromVelocities
   norm_num [abs_lt]
 
 /-! ## O limite rígido do deslocamento, provado em vez de assumido -/
 
-/-- **`h'∞ → 0` quando a rigidez diverge.**
+/-- **EN:** The asymptotic (high-degree) vertical load Love number `h'∞` tends to `0` as the shear modulus
+`μ → ∞`. Boussinesq regime only; this is not the rigid limit at finite degree.
+
+**`h'∞ → 0` quando a rigidez diverge.**
 
 Uma Terra rígida não se deforma, e é isso que este teorema afirma — no regime em que a
 forma fechada vale. A prova é o que se espera: `h'∞` é uma constante dividida por `μ`, e
@@ -123,7 +135,7 @@ cresce sem limite — é este limite, e é demonstrável.
 ⚠️ **O que ele NÃO é:** o limite rígido em grau finito. As formas fechadas de Boussinesq
 são o comportamento de grau alto; obter `h, l → 0` para todo grau exigiria o sistema
 elasto-gravitacional, que não está formalizado aqui. -/
-theorem hInf_tende_a_zero_na_rigidez (G g nu : ℝ) :
+theorem hInf_tendsto_zero_as_rigidity_diverges (G g nu : ℝ) :
     Filter.Tendsto (fun mu => hInf G g mu nu) Filter.atTop (nhds 0) := by
   have h : (fun mu => hInf G g mu nu)
       = fun mu => (-g ^ 2 * (1 - nu) / (2 * Real.pi * G)) / mu := by
@@ -133,8 +145,11 @@ theorem hInf_tende_a_zero_na_rigidez (G g nu : ℝ) :
   rw [h]
   exact Filter.Tendsto.div_atTop tendsto_const_nhds Filter.tendsto_id
 
-/-- **`(n·l')∞ → 0` quando a rigidez diverge** — o mesmo para o deslocamento horizontal. -/
-theorem nlInf_tende_a_zero_na_rigidez (G g nu : ℝ) :
+/-- **EN:** Likewise, the asymptotic horizontal load Love number `(n·l')∞` tends to `0` as `μ → ∞`;
+Boussinesq regime only.
+
+**`(n·l')∞ → 0` quando a rigidez diverge** — o mesmo para o deslocamento horizontal. -/
+theorem nlInf_tendsto_zero_as_rigidity_diverges (G g nu : ℝ) :
     Filter.Tendsto (fun mu => nlInf G g mu nu) Filter.atTop (nhds 0) := by
   have h : (fun mu => nlInf G g mu nu)
       = fun mu => ((1 - 2 * nu) * g ^ 2 / (4 * Real.pi * G)) / mu := by
@@ -144,40 +159,46 @@ theorem nlInf_tende_a_zero_na_rigidez (G g nu : ℝ) :
   rw [h]
   exact Filter.Tendsto.div_atTop tendsto_const_nhds Filter.tendsto_id
 
-/-- **Os dois deslocamentos desaparecem juntos no limite rígido.**
+/-- **EN:** Both asymptotic displacement load Love numbers vanish in the rigid limit `μ → ∞`. This is the
+displacement half of the rigid-limit dichotomy, established only in the Boussinesq (high-degree) regime.
+
+**Os dois deslocamentos desaparecem juntos no limite rígido.**
 
 É o enunciado que o manuscrito cita: no limite de rigidez infinita os fatores do
 deslocamento — vertical e horizontal — tendem ambos para zero, e portanto a série que eles
 multiplicam anula-se. O contraste com `δₙ = 1` e `D = 1` deixa de ser entre um teorema e
 uma trivialidade, e passa a ser entre dois teoremas. -/
-theorem deslocamento_desaparece_no_limite_rigido (G g nu : ℝ) :
+theorem displacement_vanishes_in_rigid_limit (G g nu : ℝ) :
     Filter.Tendsto (fun mu => hInf G g mu nu) Filter.atTop (nhds 0) ∧
     Filter.Tendsto (fun mu => nlInf G g mu nu) Filter.atTop (nhds 0) :=
-  ⟨hInf_tende_a_zero_na_rigidez G g nu, nlInf_tende_a_zero_na_rigidez G g nu⟩
+  ⟨hInf_tendsto_zero_as_rigidity_diverges G g nu, nlInf_tendsto_zero_as_rigidity_diverges G g nu⟩
 
 
-/-- ✅ **O mesmo controlo, agora sobre as DEFINIÇÕES `nlInf` e `hInf`, e não sobre a razão
+/-- **EN:** The same check as `control_against_farrell`, but through the definitions `nlInf`/`hInf` for arbitrary
+non-zero `G`, `g`, `μ`. A common wrong factor in both definitions would still cancel and go undetected.
+
+✅ **O mesmo controlo, agora sobre as DEFINIÇÕES `nlInf` e `hInf`, e não sobre a razão
 escrita à mão.**
 
-O `controlo_contra_farrell` compara a forma `−(1−2ν)/(2(1−ν))` com o `1,673` da Tabela A2
+O `control_against_farrell` compara a forma `−(1−2ν)/(2(1−ν))` com o `1,673` da Tabela A2
 de `@farrell1972carga` (`bibliografia/md/farrell1972carga.md`, l. 1783 e ss.: linha `∞*`,
 colunas `−h'` = `5.005` e `n·l'` = `1.673`, *«Boussinesq approximation, equations 36»*);
 mas nele `hInf` e `nlInf` NÃO OCORREM — um erro numa das duas definições só seria apanhado
-pelo `razao_de_boussinesq`. Este enunciado fecha esse elo: para QUALQUER `G`, `g`, `μ` não
+pelo `boussinesq_ratio`. Este enunciado fecha esse elo: para QUALQUER `G`, `g`, `μ` não
 nulos, `−5,005 · nlInf/hInf` cai a menos de `1e-3` do `1,673` publicado.
 
 ⚠️⚠️ **O que ele NÃO apanha, e nenhuma âncora do acervo apanha:** um mesmo fator errado nas
 DUAS definições cancela na razão. Prender `hInf` sozinho ao `−5,005` exigiria o `μ` da
 camada de topo do Gutenberg–Bullen, que o artigo não tabula (a Fig. 2 dá `v_p` e `v_s`,
 não `ρ`). Fica registado como limite, não como portão. -/
-theorem controlo_contra_farrell_nas_definicoes (G g mu : ℝ)
+theorem control_against_farrell_via_definitions (G g mu : ℝ)
     (hG : G ≠ 0) (hg : g ≠ 0) (hmu : mu ≠ 0) :
-    |(-5.005) * (nlInf G g mu (poissonDeVelocidades 6.14 3.55)
-        / hInf G g mu (poissonDeVelocidades 6.14 3.55)) - 1.673| < 1e-3 := by
-  have hnu : poissonDeVelocidades 6.14 3.55 ≠ 1 := by
-    unfold poissonDeVelocidades
+    |(-5.005) * (nlInf G g mu (poissonFromVelocities 6.14 3.55)
+        / hInf G g mu (poissonFromVelocities 6.14 3.55)) - 1.673| < 1e-3 := by
+  have hnu : poissonFromVelocities 6.14 3.55 ≠ 1 := by
+    unfold poissonFromVelocities
     norm_num
-  rw [razao_de_boussinesq G g mu _ hG hg hmu hnu]
-  exact controlo_contra_farrell
+  rw [boussinesq_ratio G g mu _ hG hg hmu hnu]
+  exact control_against_farrell
 
 end Mapgravy

@@ -25,37 +25,37 @@ desta lista não é verificado por ninguém — e há portão que compara as dua
 -/
 
 #print axioms Mapgravy.kHelmert_sub_half_FA
-#print axioms Mapgravy.gBarra_sub_gammaBarra
-#print axioms Mapgravy.separacao_e_identidade
-#print axioms Mapgravy.kHelmert_classico
-#print axioms Mapgravy.gBarraHelmert_classico
-#print axioms Mapgravy.gammaBarra_classico
-#print axioms Mapgravy.disturbioBouguer_classico
+#print axioms Mapgravy.meanGravity_sub_meanNormalGravity
+#print axioms Mapgravy.separation_is_identity
+#print axioms Mapgravy.kHelmert_classical
+#print axioms Mapgravy.meanGravityHelmert_classical
+#print axioms Mapgravy.meanNormalGravity_classical
+#print axioms Mapgravy.bouguerAnomaly_classical
 
-#print axioms Mapgravy.delta_rigido
-#print axioms Mapgravy.gama_rigido
-#print axioms Mapgravy.dicotomia_do_limite_rigido
-#print axioms Mapgravy.hInf_tende_a_zero_na_rigidez
-#print axioms Mapgravy.nlInf_tende_a_zero_na_rigidez
-#print axioms Mapgravy.deslocamento_desaparece_no_limite_rigido
-#print axioms Mapgravy.delta_eq_one_iff
-#print axioms Mapgravy.delta_grau_dois
-#print axioms Mapgravy.gama_prem
-#print axioms Mapgravy.delta_prem
+#print axioms Mapgravy.gravimetricFactor_rigid
+#print axioms Mapgravy.tiltFactor_rigid
+#print axioms Mapgravy.rigid_limit_dichotomy
+#print axioms Mapgravy.hInf_tendsto_zero_as_rigidity_diverges
+#print axioms Mapgravy.nlInf_tendsto_zero_as_rigidity_diverges
+#print axioms Mapgravy.displacement_vanishes_in_rigid_limit
+#print axioms Mapgravy.gravimetricFactor_eq_one_iff
+#print axioms Mapgravy.gravimetricFactor_degree_two
+#print axioms Mapgravy.tiltFactor_prem
+#print axioms Mapgravy.gravimetricFactor_prem
 
-#print axioms Mapgravy.razao_de_boussinesq
-#print axioms Mapgravy.razao_nao_depende_de_g_nem_de_mu
-#print axioms Mapgravy.controlo_contra_farrell
-#print axioms Mapgravy.controlo_contra_farrell_nas_definicoes
+#print axioms Mapgravy.boussinesq_ratio
+#print axioms Mapgravy.ratio_independent_of_g_and_mu
+#print axioms Mapgravy.control_against_farrell
+#print axioms Mapgravy.control_against_farrell_via_definitions
 
-#print axioms Mapgravy.hormander_limita_a_obliquidade
-#print axioms Mapgravy.angulo_agudo_iff_produto_interno_positivo
-#print axioms Mapgravy.hormander_implica_lions_sznitman
-#print axioms Mapgravy.lions_sznitman_nao_implica_hormander
+#print axioms Mapgravy.hormander_bounds_obliquity
+#print axioms Mapgravy.acute_angle_iff_inner_positive
+#print axioms Mapgravy.hormander_implies_lions_sznitman
+#print axioms Mapgravy.lions_sznitman_not_implies_hormander
 
-#print axioms Mapgravy.fluxo_acumula_a_fonte
-#print axioms Mapgravy.potencial_menos_massa_e_constante
-#print axioms Mapgravy.constante_no_aberto
-#print axioms Mapgravy.constante_e_zero
-#print axioms Mapgravy.potencial_iguala_a_massa_encerrada
-#print axioms Mapgravy.k_carga_do_grau_zero_e_nulo
+#print axioms Mapgravy.flux_accumulates_the_source
+#print axioms Mapgravy.potential_minus_mass_is_constant
+#print axioms Mapgravy.constant_on_open_interval
+#print axioms Mapgravy.constant_is_zero
+#print axioms Mapgravy.potential_equals_enclosed_mass
+#print axioms Mapgravy.load_love_number_degree_zero_is_null

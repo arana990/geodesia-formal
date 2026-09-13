@@ -53,19 +53,25 @@ open InnerProductGeometry
 
 variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
 
-/-- **A metade aritmética.** Se a soma dos dois ângulos de Hörmander respeita `π/2 − δ`
+/-- **EN:** The arithmetic half: if two non-negative angles sum to at most `π/2 − δ` with `δ > 0`, the angle
+with the normal alone is strictly less than `π/2`.
+
+**A metade aritmética.** Se a soma dos dois ângulos de Hörmander respeita `π/2 − δ`
 com `δ > 0`, então o ângulo com a normal — sozinho — é estritamente menor que `π/2`.
 
 ⚠️ **A hipótese que carrega tudo é `0 ≤ α`**, e ela não é uma suposição: é
 `InnerProductGeometry.angle_nonneg`, propriedade da definição. Escrevê-la explicitamente é
 o que impede a leitura errada de que o resultado precisaria de algo sobre a deflexão da
 vertical. -/
-theorem hormander_limita_a_obliquidade (α θ δ : ℝ)
+theorem hormander_bounds_obliquity (α θ δ : ℝ)
     (hα : 0 ≤ α) (hδ : 0 < δ) (h : α + θ ≤ Real.pi / 2 - δ) :
     θ < Real.pi / 2 := by
   linarith
 
-/-- **A ponte geométrica: ângulo `< π/2` é o mesmo que produto interno positivo.**
+/-- **EN:** For non-zero vectors, the angle is acute if and only if the inner product is positive — the form in
+which the Lions–Sznitman condition is actually tested in code.
+
+**A ponte geométrica: ângulo `< π/2` é o mesmo que produto interno positivo.**
 
 É a forma em que a condição de Lions–Sznitman entra no código — o motor testa o SINAL da
 componente normal, não um ângulo. ⚠️ A equivalência precisa de os dois vetores serem
@@ -75,7 +81,7 @@ não-nulos, e é aí que ela pode falhar em silêncio: com `n = 0` o `angle` do 
 Precedente do que ela protege: o `CLAUDE.md` §1 avisa que *«o sinal `−δg` só vale para `s`
 apontando para FORA»*, e que a mesma condição escrita ao longo da gravidade troca de sinal.
 Uma condição de bem-postura escrita com o vetor errado passa despercebida. -/
-theorem angulo_agudo_iff_produto_interno_positivo (x y : V) (hx : x ≠ 0) (hy : y ≠ 0) :
+theorem acute_angle_iff_inner_positive (x y : V) (hx : x ≠ 0) (hy : y ≠ 0) :
     angle x y < Real.pi / 2 ↔ 0 < inner ℝ x y := by
   have hnx : 0 < ‖x‖ := norm_pos_iff.mpr hx
   have hny : 0 < ‖y‖ := norm_pos_iff.mpr hy
@@ -96,7 +102,11 @@ theorem angulo_agudo_iff_produto_interno_positivo (x y : V) (hx : x ≠ 0) (hy :
     have : 0 < inner ℝ x y / (‖x‖ * ‖y‖) := by positivity
     linarith
 
-/-- **O teorema: a condição de Hörmander implica a de Lions–Sznitman.**
+/-- **EN:** Hörmander's uniqueness condition for the oblique derivative problem implies the Lions–Sznitman
+well-posedness condition `⟪h, n⟫ > 0`, for any non-zero `h`, `n`. It says nothing about whether either
+condition is the right one for the problem, nor whether a given domain satisfies it.
+
+**O teorema: a condição de Hörmander implica a de Lions–Sznitman.**
 
 Dados a vertical `h` e a normal exterior `n`, ambos não-nulos, se a soma do ângulo de `h`
 com a radial `r` e do ângulo de `h` com `n` respeita `π/2 − δ` com `δ > 0`, então
@@ -105,15 +115,18 @@ com a radial `r` e do ângulo de `h` com `n` respeita `π/2 − δ` com `δ > 0`
 ⚠️ **A implicação é ESTRITA e vale só nesta direção.** Lions–Sznitman **não** implica
 Hörmander: a condição dele limita um ângulo só, e nada diz sobre a deflexão da vertical.
 ⇒ verificar a condição do motor não dá unicidade; verificar a de Hörmander dá as duas. -/
-theorem hormander_implica_lions_sznitman (h n r : V) (hh : h ≠ 0) (hn : n ≠ 0)
+theorem hormander_implies_lions_sznitman (h n r : V) (hh : h ≠ 0) (hn : n ≠ 0)
     (δ : ℝ) (hδ : 0 < δ)
     (hsoma : angle h r + angle h n ≤ Real.pi / 2 - δ) :
     0 < inner ℝ h n := by
   have hθ : angle h n < Real.pi / 2 :=
-    hormander_limita_a_obliquidade _ _ δ (angle_nonneg h r) hδ hsoma
-  exact (angulo_agudo_iff_produto_interno_positivo h n hh hn).mp hθ
+    hormander_bounds_obliquity _ _ δ (angle_nonneg h r) hδ hsoma
+  exact (acute_angle_iff_inner_positive h n hh hn).mp hθ
 
-/-- ⚠️ **A recíproca é FALSA, e este teorema di-lo construtivamente.**
+/-- **EN:** The converse fails: an explicit configuration (`h = n`, `r = −h`) satisfies Lions–Sznitman with
+`⟪h, n⟫ > 0` while violating Hörmander's bound for every `δ > 0`.
+
+⚠️ **A recíproca é FALSA, e este teorema di-lo construtivamente.**
 
 Existe uma configuração em que a condição de Lions–Sznitman vale — `⟪h, n⟫ > 0` — e a de
 Hörmander falha para todo `δ > 0`: basta a vertical fazer um ângulo grande com a radial.
@@ -124,7 +137,7 @@ domínio é medida; implicarem-se é teorema, e só numa direção.**
 
 Toma-se `h = n` (ângulo nulo, condição do motor satisfeita com folga máxima) e `r` oposto
 a `h`, de que `angle h r = π`. -/
-theorem lions_sznitman_nao_implica_hormander (h : V) (hh : h ≠ 0) :
+theorem lions_sznitman_not_implies_hormander (h : V) (hh : h ≠ 0) :
     0 < inner ℝ h h ∧ ¬ (angle h (-h) + angle h h ≤ Real.pi / 2) := by
   refine ⟨real_inner_self_pos.mpr hh, ?_⟩
   rw [angle_self_neg_of_nonzero hh, angle_self hh]
