@@ -1,11 +1,9 @@
 /-
 Copyright (c) 2026 Daniel Arana. All rights reserved.
-Released under GPL-3.0 license as described in the file LICENSE.
+Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Daniel Arana
 -/
 import Mathlib
-
-set_option linter.style.header false
 
 /-!
 # O limite rígido decide quem precisa de números de Love
@@ -135,7 +133,6 @@ elas divergissem, a divergência passaria despercebida em toda a literatura de g
 theorem gravimetricFactor_degree_two (h k : ℝ) : gravimetricFactor 2 h k = 1 + h - (3 / 2) * k := by
   unfold gravimetricFactor
   norm_num
-
 
 /-- **EN:** Arithmetic check against a published value: PREM's `h₂ = 0.6032`, `k₂ = 0.2980` give the published
 tilt factor `γ₂ = 0.6948`; pins the signs in the definition, not the physics.

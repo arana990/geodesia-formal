@@ -4,7 +4,7 @@
   "language": "eng",
   "title": "Machine-checked proofs of five relations in physical geodesy",
   "version": "1.0.0",
-  "license": "gpl-3.0-only",
+  "license": "apache-2.0",
   "creators": [
     {
       "name": "Arana, Daniel",

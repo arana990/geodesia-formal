@@ -8,7 +8,7 @@
 > **To reproduce**, see *How to reproduce* below. **To verify**, compiling is not enough:
 > see *What "proved" means here*, which is the section that matters.
 >
-> Licence GPL-3.0 (file `LICENSE`). How to cite: file `CITATION.cff`.
+> Licence Apache-2.0 (file `LICENSE`). How to cite: file `CITATION.cff`.
 
 ---
 
@@ -89,9 +89,9 @@ independent confirmation of anything.
 
 ## Conventions
 
-A copyright header in every file, `set_option linter.style.header false` (mathlib's linter
-demands ITS licence, which is Apache 2.0; this repository is GPL-3.0 — swapping the header
-to silence the warning would declare a false licence), and `namespace Mapgravy`.
+A copyright header in every file and `namespace Mapgravy`. The licence is Apache-2.0, the
+same as mathlib's, which this material builds on; the choice is deliberate, so that a
+theorem here can be reused — including upstream — without a licence conflict.
 
 Every theorem docstring opens with a one-line **`EN:`** summary of what it establishes;
 the rest is in Portuguese and carries the **science**, not just the mathematics: why the

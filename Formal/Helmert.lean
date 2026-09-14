@@ -1,14 +1,9 @@
 /-
 Copyright (c) 2026 Daniel Arana. All rights reserved.
-Released under GPL-3.0 license as described in the file LICENSE.
+Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Daniel Arana
 -/
 import Mathlib
-
--- ⚠️ O `linter.style.header` do mathlib exige a string "Released under Apache 2.0",
--- que é a licença DELE. Este repositório é GPL-3.0 (ver LICENSE). Desligar o linter
--- é a saída certa; trocar o cabeçalho para calar o aviso declararia licença falsa.
-set_option linter.style.header false
 
 /-!
 # A separação geoide/quase-geoide é IDENTIDADE, não duas rotas
@@ -166,7 +161,6 @@ o modo de falha que o §0.3c cataloga. -/
 theorem kHelmert_classical : kHelmert 0.3086 0.1119 = 0.0424 := by
   unfold kHelmert
   norm_num
-
 
 /-- **EN:** With the published literals the definition reduces to the textbook Helmert mean gravity
 `ḡ = g + 0.0424 H`; pins the sign and the place where `k` enters, not the physics.

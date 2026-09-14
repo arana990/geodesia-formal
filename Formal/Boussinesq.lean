@@ -1,11 +1,9 @@
 /-
 Copyright (c) 2026 Daniel Arana. All rights reserved.
-Released under GPL-3.0 license as described in the file LICENSE.
+Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Daniel Arana
 -/
 import Mathlib
-
-set_option linter.style.header false
 
 /-!
 # A razão de Boussinesq depende SÓ de `ν`, e é isso que a torna um oráculo
@@ -172,7 +170,6 @@ theorem displacement_vanishes_in_rigid_limit (G g nu : ℝ) :
     Filter.Tendsto (fun mu => hInf G g mu nu) Filter.atTop (nhds 0) ∧
     Filter.Tendsto (fun mu => nlInf G g mu nu) Filter.atTop (nhds 0) :=
   ⟨hInf_tendsto_zero_as_rigidity_diverges G g nu, nlInf_tendsto_zero_as_rigidity_diverges G g nu⟩
-
 
 /-- **EN:** The same check as `control_against_farrell`, but through the definitions `nlInf`/`hInf` for arbitrary
 non-zero `G`, `g`, `μ`. A common wrong factor in both definitions would still cancel and go undetected.

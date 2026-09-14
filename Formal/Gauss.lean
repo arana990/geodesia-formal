@@ -1,11 +1,9 @@
 /-
 Copyright (c) 2026 Daniel Arana. All rights reserved.
-Released under GPL-3.0 license as described in the file LICENSE.
+Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Daniel Arana
 -/
 import Mathlib
-
-set_option linter.style.header false
 
 /-!
 # `k′₀ = 0` é teorema, e o teorema é Gauss

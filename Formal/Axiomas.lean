@@ -1,6 +1,6 @@
 /-
 Copyright (c) 2026 Daniel Arana. All rights reserved.
-Released under GPL-3.0 license as described in the file LICENSE.
+Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Daniel Arana
 -/
 import Formal.Helmert
@@ -8,8 +8,6 @@ import Formal.FatoresDeMare
 import Formal.Boussinesq
 import Formal.BemPostura
 import Formal.Gauss
-
-set_option linter.style.header false
 
 /-!
 # O portão de VERDADE das provas deste diretório
