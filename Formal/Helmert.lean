@@ -21,7 +21,7 @@ Este projeto tem duas funções que calculam a separação geoide/quase-geoide:
 
 Elas concordam, e **essa concordância foi lida como confirmação independente** — o
 §0.3c #1, *rigor apontado para a referência errada*. Não é confirmação nenhuma: as duas
-são **a mesma expressão**, e a única coisa que a comparação mede é o resíduo de segunda
+são **a mesma expressão**, e o que a comparação mede é apenas o resíduo de segunda
 ordem das duas implementações (`0,07 cm` de rms nos `222` marcos do GSVS17).
 
 O que se prova aqui é a álgebra que torna isso inevitável. ⚠️ **Depois disto, «são duas
@@ -37,8 +37,8 @@ vezes a placa de Bouguer, e a média ao longo do prumo é metade disso. Escreven
   `k = (FA − 2B) / 2`
 
 O passo que fecha tudo é que `k − FA/2 = −B` **exatamente**, e é ele que faz a
-diferença entre a gravidade observada reduzida e a normal reduzida colapsar no
-distúrbio de Bouguer.
+diferença entre a gravidade observada reduzida e a normal reduzida colapsar na
+anomalia de Bouguer.
 -/
 
 namespace Mapgravy
@@ -96,10 +96,12 @@ noncomputable def bouguerAnomaly (dg B H : ℝ) : ℝ := dg - B * H
 /-- **EN:** Helmert mean gravity and mean normal gravity along the plumb line differ exactly by the
 Bouguer anomaly, `ḡ − γ̄ = Δg_B`; nothing beyond the definition of `k` enters.
 
-**Primeiro teorema: as duas gravidades médias diferem pelo distúrbio de BOUGUER**,
-e não por algo novo.
+**Primeiro teorema: as duas gravidades médias diferem pela ANOMALIA de Bouguer**,
+e não por algo novo. ⚠️ É anomalia e não distúrbio porque a `γ` se avalia no teluroide,
+como a `meanNormalGravity` exige — a distinção é o assunto do artigo que acompanha
+este diretório, e sobreviveu neste comentário até 2026-09-15.
 
-Com `dg = g − γ` o distúrbio de gravidade,
+Com `dg = g − γ_Q` a anomalia de gravidade,
 
   `ḡ_Helmert − γ̄ = Δg_B`
 
