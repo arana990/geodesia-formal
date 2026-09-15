@@ -43,7 +43,10 @@ namespace Mapgravy
 /-- O fator gravimétrico do grau `n`, `δₙ = 1 + (2/n)hₙ − ((n+1)/n)kₙ`.
 
 ⚠️ **O grau entra como real e não como natural**, e é deliberado: a fórmula divide por
-`n`, e a divisão em `ℕ` truncaria. O `hn : (n:ℝ) ≠ 0` aparece em cada teorema por isso. -/
+`n`, e a divisão em `ℕ` truncaria. ⚠️ A hipótese `hn : n ≠ 0` sobrevive num só teorema,
+o `gravimetricFactor_eq_one_iff`; nos do limite rígido ela foi RETIRADA, porque o sistema
+assinalou que não era usada — a divisão é total, e `x/0 = 0` por definição. Esta docstring
+dizia que ela «aparece em cada teorema», e ficou atrás dessa remoção até 2026-09-15. -/
 noncomputable def gravimetricFactor (n h k : ℝ) : ℝ := 1 + (2 / n) * h - ((n + 1) / n) * k
 
 /-- O fator de diminuição da inclinação, `γ = 1 + k − h`. Não depende do grau. -/
