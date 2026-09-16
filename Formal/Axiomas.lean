@@ -8,6 +8,11 @@ import Formal.FatoresDeMare
 import Formal.Boussinesq
 import Formal.BemPostura
 import Formal.Gauss
+import Formal.MarePermanente
+import Formal.Alturas
+import Formal.Bruns
+import Formal.Contracao
+import Formal.AlturaNormalReal
 
 /-!
 # O portão de VERDADE das provas deste diretório
@@ -57,3 +62,35 @@ desta lista não é verificado por ninguém — e há portão que compara as dua
 #print axioms Mapgravy.constant_is_zero
 #print axioms Mapgravy.potential_equals_enclosed_mass
 #print axioms Mapgravy.load_love_number_degree_zero_is_null
+
+#print axioms Mapgravy.gammaEkman_eq
+#print axioms Mapgravy.ekmanGravity_ratio_is_degree_two
+#print axioms Mapgravy.ekmanGeoid_ratio_is_degree_two
+#print axioms Mapgravy.ekmanGravityC0_from_geoid
+#print axioms Mapgravy.converte_self
+#print axioms Mapgravy.converte_trans
+#print axioms Mapgravy.converte_inv
+#print axioms Mapgravy.nivelDifAltura_eq_neg_geoide_add_crosta
+
+#print axioms Mapgravy.meanNormalGravity_from_ellipsoid
+#print axioms Mapgravy.normalHeight_unique
+#print axioms Mapgravy.normalHeight_closed_form
+#print axioms Mapgravy.geoid_minus_zeta_eq_height_diff
+#print axioms Mapgravy.geoid_zeta_involution
+#print axioms Mapgravy.convert_geoid_quantity_is_exact
+
+#print axioms Mapgravy.anomaly_sub_disturbance
+#print axioms Mapgravy.bouguerAnomaly_from_disturbance_error
+#print axioms Mapgravy.sphericalGradient_matches_classical_FA
+
+#print axioms Mapgravy.iteracao_lipschitz
+#print axioms Mapgravy.bola_dentro_da_regiao
+#print axioms Mapgravy.erro_apos_n_iteracoes
+
+#print axioms Mapgravy.psi_sub
+#print axioms Mapgravy.psi_strictMono
+#print axioms Mapgravy.normalHeightReal_unique
+#print axioms Mapgravy.normalHeightReal_exists
+#print axioms Mapgravy.gammaBarReal_lipschitz
+#print axioms Mapgravy.iteracaoReal_lipschitz
+#print axioms Mapgravy.literal_antigo_nao_e_bruns

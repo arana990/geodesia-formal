@@ -3,4 +3,9 @@ import Formal.FatoresDeMare
 import Formal.Boussinesq
 import Formal.BemPostura
 import Formal.Gauss
+import Formal.MarePermanente
+import Formal.Alturas
+import Formal.Bruns
+import Formal.Contracao
+import Formal.AlturaNormalReal
 import Formal.Axiomas
