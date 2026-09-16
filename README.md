@@ -29,6 +29,28 @@ directory.
 
 `Formal/Axiomas.lean` is not a proof: it is the gate. See below.
 
+## The Python scripts the paper cites (`python/`)
+
+The paper's numerical checks are three short scripts, deposited here so that the numbers
+in the text can be recomputed without the private repository they were written in:
+
+| script | what it produces |
+|---|---|
+| `independencia_simbolica.py` | the **independence grade** of each published pair of routes (Table «independência»), by symbolic algebra over the equations transcribed from each source — each case names the numbered equations and page it was read from |
+| `custo_da_concordancia.py` | the numbers of the **cost figure**: the three comparisons of Gómez et al. (2024), Table 3, in m²s⁻² and in cm |
+| `fig_custo_da_concordancia.py` | the figure itself (`matplotlib`) |
+| `cas_contra_lean.py` | the comparison with a computer-algebra system: what `sympy` decides in one line, and what it accepts without complaint |
+
+Their tests are in `python/tests/`. Run them with `pip install -r python/requirements.txt`
+and `cd python && pytest tests`. ⚠️ The tests that read the source PDFs skip when the PDFs
+are absent: the papers are copyrighted and are not part of this deposit. The scripts are
+verbatim copies of the ones in the authors' repository — only the `import` lines differ,
+and a gate there keeps the two copies identical.
+
+⚠️ **Not deposited:** the measurement of the authors' own case (the 0,07 cm agreement
+between the two Helmert routes over the GSVS17 line) depends on the Colorado benchmark
+data and on the full geoid chain, and lives in the private repository.
+
 ## How to reproduce
 
 ```

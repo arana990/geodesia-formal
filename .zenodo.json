@@ -3,7 +3,7 @@
   "access_right": "open",
   "language": "eng",
   "title": "Machine-checked proofs of five relations in physical geodesy",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "apache-2.0",
   "creators": [
     {
@@ -11,7 +11,7 @@
       "affiliation": "Universidade Federal do Parana, Departamento de Geomatica"
     }
   ],
-  "description": "<p>A Lean 4 formalisation, over the mathlib library, of five relations in physical geodesy:</p><ul><li>the geoid&ndash;quasigeoid separation as an <em>algebraic identity</em> rather than two independent routes;</li><li>the rigid limit of the gravimetric and tilt factors, together with the vanishing of the displacement factors in the asymptotic regime;</li><li>the invariance of the asymptotic Boussinesq ratio with respect to gravity and shear modulus;</li><li>the implication from H&ouml;rmander's uniqueness condition to the Lions&ndash;Sznitman well-posedness condition, with an explicit counterexample to the converse;</li><li>the nullity of the degree-zero load Love number as a consequence of mass conservation.</li></ul><p>Every theorem prints its axiom dependencies during the build, and none depends on an axiom outside the three standard ones. The entry bar is <code>#print axioms</code>, not <code>lake build</code>: a proof containing <code>sorry</code> compiles. No observational data are used.</p><p>Reproducing requires only two pinned dependencies, both declared in the repository: Lean 4 version 4.33.1 (<code>lean-toolchain</code>) and the mathlib commit recorded in <code>lake-manifest.json</code>.</p><p>This material accompanies a methodological manuscript on distinguishing algebraic identities from independent verification in physical geodesy.</p>",
+  "description": "<p>A Lean 4 formalisation, over the mathlib library, of five relations in physical geodesy:</p><ul><li>the geoid&ndash;quasigeoid separation as an <em>algebraic identity</em> rather than two independent routes;</li><li>the rigid limit of the gravimetric and tilt factors, together with the vanishing of the displacement factors in the asymptotic regime;</li><li>the invariance of the asymptotic Boussinesq ratio with respect to gravity and shear modulus;</li><li>the implication from H&ouml;rmander's uniqueness condition to the Lions&ndash;Sznitman well-posedness condition, with an explicit counterexample to the converse;</li><li>the nullity of the degree-zero load Love number as a consequence of mass conservation.</li></ul><p>Every theorem prints its axiom dependencies during the build, and none depends on an axiom outside the three standard ones. The entry bar is <code>#print axioms</code>, not <code>lake build</code>: a proof containing <code>sorry</code> compiles. No observational data are used.</p><p>Reproducing requires only two pinned dependencies, both declared in the repository: Lean 4 version 4.33.1 (<code>lean-toolchain</code>) and the mathlib commit recorded in <code>lake-manifest.json</code>.</p><p>Version 1.1.0 adds, under <code>python/</code>, the three Python scripts the accompanying paper cites — the symbolic independence grade of each published pair of routes, the numbers of the cost figure, and the comparison with a computer-algebra system — with their tests. They are verbatim copies of the authors' repository, differing only in the import lines.</p><p>This material accompanies a methodological manuscript on distinguishing algebraic identities from independent verification in physical geodesy.</p>",
   "keywords": [
     "physical geodesy",
     "formal verification",
