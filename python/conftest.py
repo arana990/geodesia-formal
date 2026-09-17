@@ -1,4 +1,4 @@
-"""Põe este diretório no caminho de importação: os módulos e os testes estão lado a lado."""
+"""Puts this directory on the import path: the modules and the tests sit side by side."""
 import pathlib
 import sys
 
